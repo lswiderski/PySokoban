@@ -9,7 +9,7 @@ class Level:
     def __init__(self):
         self.player = pygame.sprite.Group()
         self.box_list = pygame.sprite.Group()
-        self.load(MapFile2)
+        self.load(MapFile)
 
     def load(self, mapFile):
         self.map = Map.Map("1",mapFile)
@@ -94,6 +94,15 @@ class Level:
          for i in self.box_list.sprites():
             if( i.x==x and i.y==y):
                 i.changePositin(x+dx,y+dy)
+                if(self.checkIfPlaceIsGoal(x+dx,y+dy)):
+                    i.setOn()
+                else:
+                    i.setOff()
 
-
+    def checkIfPlaceIsGoal(self,x,y):
+        for i in self.map.bl_list.sprites():
+            if(i.x==x and i.y==y):
+                if(i.type=="."):
+                    return True
+        return False
 
