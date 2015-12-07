@@ -10,8 +10,9 @@ class Box(Block.Block):
 
     def setOn(self):
         self.setSprite("*")
+        self.type ="*"
 
     def setOff(self):
         self.setSprite("$")
-
+        self.type ="$"
 

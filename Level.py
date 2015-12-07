@@ -78,6 +78,8 @@ class Level:
             #justmove to place
             self.movePlayer(dX,dY)
 
+        self.isLevelComplited()
+
     def movePlayer(self,dx,dy):
         p = self.player.sprites()[0]
 
@@ -105,4 +107,13 @@ class Level:
                 if(i.type=="."):
                     return True
         return False
+
+    def isLevelComplited(self):
+        for i in self.box_list.sprites():
+            if(i.type!="*"):
+               return False
+        print("Done")
+        #load new map
+        return True
+
 
