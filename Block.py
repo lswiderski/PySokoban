@@ -11,7 +11,15 @@ class Block(pygame.sprite.Sprite):
     def __init__(self, type, x, y):
         super(Block, self).__init__()
         self.image = pygame.Surface([SPRT_WIDTH, SPRT_HEIGHT])
+        self.setSprite(type)
+        self.rect = self.image.get_rect()
+        self.rect.x = x*SPRT_WIDTH
+        self.rect.y = y*SPRT_HEIGHT
+        self.type = type
+        self.x = x
+        self.y = y
 
+    def setSprite(self,type):
         if(type == " " ):# "Floor"
             sheet.set_clip(pygame.Rect(5*SPRT_WIDTH,0,SPRT_WIDTH,SPRT_HEIGHT))
         elif(type == "#"): # "Wall"
@@ -25,8 +33,23 @@ class Block(pygame.sprite.Sprite):
         elif(type == "@"): # "Player"
             sheet.set_clip(pygame.Rect(0*SPRT_WIDTH,0, SPRT_WIDTH,SPRT_HEIGHT))
 
-        self.image = sheet.subsurface(sheet.get_clip())
-        self.rect = self.image.get_rect()
+        self.image =  sheet.subsurface(sheet.get_clip())
+        return self.image
+
+    def changePositin(self,x,y):
+        self.x=x
+        self.y=y
         self.rect.x = x*SPRT_WIDTH
         self.rect.y = y*SPRT_HEIGHT
-        self.type = type
+
+    def moveUp(self):
+        self.changePositin(self.x,self.y-1)
+
+    def moveDown(self):
+        self.changePositin(self.x,self.y+1)
+
+    def moveLeft(self):
+        self.changePositin(self.x-1,self.y)
+
+    def moveRight(self):
+        self.changePositin(self.x+1,self.y)

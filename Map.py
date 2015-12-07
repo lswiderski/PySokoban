@@ -26,12 +26,12 @@ class Map:
             block = Block.Block(type, x, y)
         elif(type == "*"): # "Goal"
             block = self.makeBlock(".",x,y) #make Empty
-            self.level.addBox(Box.Box(x,y))
+            self.level.addBox(Box.Box(x,y,type))
         elif(type == "."): # "Empty"
              block = Block.Block(type, x, y)
         elif(type == "$"): # "Box"
             block = self.makeBlock(" ",x,y) #make floor
-            self.level.addBox(Box.Box(x,y))
+            self.level.addBox(Box.Box(x,y,type))
         elif(type == "@"): # "Player"
             block =  self.makeBlock(" ",x,y)#make floor
             self.level.addPlayer(Player.Player(x,y))

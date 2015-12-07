@@ -25,3 +25,37 @@ class Level:
 
     def addBox(self,_box):
         self.box_list.add(_box)
+
+    def playerMoveUp(self):
+        p = self.player.sprites()[0]
+        if(self.isWallOnPlace( p.x, p.y-1)==False):
+            p.moveUp()
+    def playerMoveDown(self):
+        p = self.player.sprites()[0]
+        if(self.isWallOnPlace( p.x, p.y+1)==False):
+            p.moveDown()
+    def playerMoveLeft(self):
+        p = self.player.sprites()[0]
+        if(self.isWallOnPlace( p.x-1, p.y)==False):
+            p.moveLeft()
+    def playerMoveRight(self):
+        p = self.player.sprites()[0]
+        if(self.isWallOnPlace( p.x+1, p.y)==False):
+            p.moveRight()
+
+    def isBoxOnPlace(self, x, y):
+        for i in self.box_list.sprites():
+            if( i.x==x and i.y==y):
+                if(i.type=="$" or i.type=="*"):
+                    return True
+        return False
+
+    def isWallOnPlace(self, x, y):
+        for i in self.map.bl_list.sprites():
+            if( i.x==x and i.y==y):
+                if(i.type=="#"):
+                    return True
+        return False
+
+
+

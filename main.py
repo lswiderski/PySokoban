@@ -19,6 +19,15 @@ while not crashed:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             crashed = True
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                level.playerMoveUp()
+            elif event.key == pygame.K_DOWN:
+                level.playerMoveDown()
+            elif event.key == pygame.K_LEFT:
+                level.playerMoveLeft()
+            elif event.key == pygame.K_RIGHT:
+                level.playerMoveRight()
         print(event)
     gameDisplay.fill(WHITE)
     level.draw(gameDisplay)
