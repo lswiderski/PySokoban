@@ -1,7 +1,6 @@
 __author__ = 'neufrin'
 import pygame
-import Block
-import random
+import Level
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -13,22 +12,7 @@ pygame.display.set_caption('PySokoban')
 clock = pygame.time.Clock()
 
 
-Map = ["#####", "#@  #", "# $.#", "# $.#", "#####"]
-Map2 = ["  ####", "### @#","#    #","# .#.###","# $    #","##*#*# #","# $    #","#   ####", "#####"]
-
-
-bl_list = pygame.sprite.Group()
-#bl_list.add(Block.Block("Wall", 2, 0))
-#bl_list.add(Block.Block("Floor", 3, 1))
-#bl_list.add(Block.Block("Player", 4, 2))
-#bl_list.add(Block.Block("Goal", 5, 3))
-#bl_list.add(Block.Block("Box", 6, 4))
-#bl_list.add(Block.Block("Empty", 7, 5))
-
-for (i,row) in enumerate(Map2):
-    for (j,type) in enumerate(row):
-        print  i,j,type
-        bl_list.add(Block.Block(type, j, i))
+level = Level.Level()
 crashed = False
 while not crashed:
 
@@ -37,7 +21,7 @@ while not crashed:
             crashed = True
         print(event)
     gameDisplay.fill(WHITE)
-    bl_list.draw(gameDisplay)
+    level.draw(gameDisplay)
 
     pygame.display.flip()
     clock.tick(60)

@@ -29,3 +29,4 @@ class Block(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x*SPRT_WIDTH
         self.rect.y = y*SPRT_HEIGHT
+        self.type = type
