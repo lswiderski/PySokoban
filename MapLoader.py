@@ -2,11 +2,6 @@ __author__ = 'neufrin'
 
 
 class MapLoader:
-    def __init__(self,mapname):
-        self.load(mapname)
-        self.mapName = mapname
-        self.lastMapName = mapname
-        self.lastMap = self.map
 
     def load(self,mapname):
         self.mapName = mapname

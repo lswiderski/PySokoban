@@ -1,17 +1,27 @@
 __author__ = 'neufrin'
 import pygame
 import Map
+import MapLoader
 
+levels = ["level1", "level2"]
 
 class Level:
     def __init__(self):
         self.player = pygame.sprite.Group()
         self.box_list = pygame.sprite.Group()
-        self.load("level1")
+        self.mLoader = MapLoader.MapLoader()
+        self.actuallevel = 0
+        self.load(levels[self.actuallevel])
 
     def load(self, mapname):
-        self.map = Map.Map("1",mapname)
+        self.map = Map.Map("1",self.mLoader.load(mapname))
         self.map.build(self)
+
+    def loadNext(self):
+        self.actuallevel+=1
+        if(len(levels)<=self.actuallevel):
+            return
+        self.load(levels[self.actuallevel])
 
     def draw(self,screen):
         self.map.draw(screen)
@@ -112,6 +122,7 @@ class Level:
                return False
         print("Done")
         #load new map
+        self.loadNext()
         return True
 
 

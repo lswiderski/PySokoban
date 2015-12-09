@@ -6,15 +6,16 @@ import Player
 import MapLoader
 
 class Map:
-    def  __init__(self, name, mapname):
+    def  __init__(self, name, mapstring):
         self.Name = name
-        self.mapfile = mapname
-        self.mLoader = MapLoader.MapLoader(mapname)
-        self.mapstring =  self.mLoader.map
+        self.mapstring = mapstring
         self.bl_list = pygame.sprite.Group()
 
     def build(self,level):
         self.level = level
+        self.bl_list.empty()
+        self.level.player.empty()
+        self.level.box_list.empty()
         for (i,row) in enumerate(self.mapstring):
             for (j,type) in enumerate(row):
                 print  i,j,type
