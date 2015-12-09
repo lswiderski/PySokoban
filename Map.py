@@ -3,13 +3,14 @@ import pygame
 import Block
 import Box
 import Player
+import MapLoader
 
 class Map:
-    def  __init__(self, name, mapfile):
+    def  __init__(self, name, mapname):
         self.Name = name
-        self.mapfile = mapfile
-        #load map but for tmp mapfile=map
-        self.mapstring = mapfile
+        self.mapfile = mapname
+        self.mLoader = MapLoader.MapLoader(mapname)
+        self.mapstring =  self.mLoader.map
         self.bl_list = pygame.sprite.Group()
 
     def build(self,level):
@@ -34,6 +35,9 @@ class Map:
             self.level.addBox(Box.Box(x,y,type))
         elif(type == "@"): # "Player"
             block =  self.makeBlock(" ",x,y)#make floor
+            self.level.addPlayer(Player.Player(x,y))
+        elif(type == "+"): # "Player on goal place"
+            block =  self.makeBlock(".",x,y)#make empty
             self.level.addPlayer(Player.Player(x,y))
         return block
 

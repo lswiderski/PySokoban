@@ -2,17 +2,15 @@ __author__ = 'neufrin'
 import pygame
 import Map
 
-MapFile = ["#####", "#@  #", "# $.#", "# $.#", "#####"]
-MapFile2 = ["  ####", "### @#","#    #","# .#.###","# $    #","##*#*# #","# $    #","#   ####", "#####"]
 
 class Level:
     def __init__(self):
         self.player = pygame.sprite.Group()
         self.box_list = pygame.sprite.Group()
-        self.load(MapFile)
+        self.load("level1")
 
-    def load(self, mapFile):
-        self.map = Map.Map("1",mapFile)
+    def load(self, mapname):
+        self.map = Map.Map("1",mapname)
         self.map.build(self)
 
     def draw(self,screen):
