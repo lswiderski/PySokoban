@@ -2,11 +2,14 @@ __author__ = 'neufrin'
 import pygame
 import Map
 import MapLoader
+import Screen
 
 levels = ["level1", "level2"]
 
-class Level:
+
+class Level(Screen.Screen):
     def __init__(self):
+        super(Level, self,).__init__("level")
         self.player = pygame.sprite.Group()
         self.box_list = pygame.sprite.Group()
         self.mLoader = MapLoader.MapLoader()
@@ -125,4 +128,19 @@ class Level:
         self.loadNext()
         return True
 
-
+    def update(self,events):
+        crashed = False
+        for event in events:
+            if event.type == pygame.QUIT:
+                crashed = True
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    self.playerMoveUp()
+                elif event.key == pygame.K_DOWN:
+                    self.playerMoveDown()
+                elif event.key == pygame.K_LEFT:
+                    self.playerMoveLeft()
+                elif event.key == pygame.K_RIGHT:
+                    self.playerMoveRight()
+            print(event)
+        return crashed

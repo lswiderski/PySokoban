@@ -11,27 +11,20 @@ gameDisplay = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
 pygame.display.set_caption('PySokoban')
 clock = pygame.time.Clock()
 
+screens = {"level" : Level.Level(),
+           "mainmenu" : Level.Level(),
+           "finishedlevel" : Level.Level(),
+           "levelselect" : Level.Level(),
+           "options" : Level.Level(),
+           "scredits" : Level.Level(),
+          }
+actualscreen = "level"
 
-level = Level.Level()
 crashed = False
 while not crashed:
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            crashed = True
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
-                level.playerMoveUp()
-            elif event.key == pygame.K_DOWN:
-                level.playerMoveDown()
-            elif event.key == pygame.K_LEFT:
-                level.playerMoveLeft()
-            elif event.key == pygame.K_RIGHT:
-                level.playerMoveRight()
-        print(event)
+    events = pygame.event.get()
     gameDisplay.fill(WHITE)
-    level.draw(gameDisplay)
-
+    crashed = screens[actualscreen].play(events,gameDisplay)
     pygame.display.flip()
     clock.tick(60)
 pygame.quit()
