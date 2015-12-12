@@ -1,13 +1,15 @@
 __author__ = 'neufrin'
+__author__ = 'neufrin'
 import pygame
 import Screen
 import Option
+import Label
 
-class MainMenu(Screen.Screen):
+class FinishedLevel(Screen.Screen):
     def __init__(self):
-        super(MainMenu, self,).__init__("mainmenu")
-        self.options = [Option.Option("PLAY", (140, 105),"selectlevel"),
-           Option.Option("CREDITS", (145, 205),"credits")]
+        super(FinishedLevel, self,).__init__("finishedlevel")
+        self.options = [Option.Option("Back to Menu", (140, 105),"mainmenu"), Option.Option("Next level", (140, 145),"level")]
+        self.labels = [Label.Label("Label", (140, 345))]
 
 
     def update(self,events):
@@ -30,3 +32,6 @@ class MainMenu(Screen.Screen):
     def draw(self,screen):
         for option in self.options:
             option.draw(screen)
+        for label in self.labels:
+            label.draw(screen)
+

@@ -3,8 +3,9 @@ import pygame
 import Map
 import MapLoader
 import Screen
+import Helper
 
-levels = ["level1", "level2"]
+levels = Helper.levels
 
 
 class Level(Screen.Screen):
@@ -13,18 +14,19 @@ class Level(Screen.Screen):
         self.player = pygame.sprite.Group()
         self.box_list = pygame.sprite.Group()
         self.mLoader = MapLoader.MapLoader()
-        self.actuallevel = 0
-        self.load(levels[self.actuallevel])
+        Helper.actuallevel = 0
+
+        self.load(levels[Helper.actuallevel])
 
     def load(self, mapname):
         self.map = Map.Map("1",self.mLoader.load(mapname))
         self.map.build(self)
 
     def loadNext(self):
-        self.actuallevel+=1
-        if(len(levels)<=self.actuallevel):
+        Helper.actuallevel+=1
+        if(len(levels)<=Helper.actuallevel):
             return
-        self.load(levels[self.actuallevel])
+        self.load(levels[Helper.actuallevel])
 
     def draw(self,screen):
         self.map.draw(screen)
@@ -124,9 +126,12 @@ class Level(Screen.Screen):
             if(i.type!="*"):
                return False
         print("Done")
-        #load new map
-        self.loadNext()
+        self.levelCompleted()
         return True
+
+    def levelCompleted(self):
+        Helper.actualscreen = "finishedlevel"
+        self.loadNext()
 
     def update(self,events):
         crashed = False

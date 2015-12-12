@@ -18,6 +18,7 @@ class Screen(object):
         self.empty_list.draw(screen)
 
     def play(self,events,screen):
-        crashed =  self.update(events)
         self.draw(screen)
+        crashed =  self.update(events)
+
         return crashed

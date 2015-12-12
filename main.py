@@ -3,6 +3,9 @@ import pygame
 import Level
 import Helper
 import MainMenu
+import Credits
+import FinishedLevel
+import SelectLevel
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -15,10 +18,9 @@ clock = pygame.time.Clock()
 
 screens = {"level" : Level.Level(),
            "mainmenu" : MainMenu.MainMenu(),
-           "finishedlevel" : Level.Level(),
-           "levelselect" : Level.Level(),
-           "options" : Level.Level(),
-           "scredits" : Level.Level(),
+           "finishedlevel" : FinishedLevel.FinishedLevel(),
+           "selectlevel" : SelectLevel.SelectLevel(),
+           "credits" : Credits.Credits(),
           }
 
 
