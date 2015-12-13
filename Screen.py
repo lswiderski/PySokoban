@@ -1,6 +1,9 @@
 __author__ = 'neufrin'
 import pygame
 
+
+
+
 class Screen(object):
     def __init__(self,name):
         self.name=name
