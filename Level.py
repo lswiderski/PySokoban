@@ -4,9 +4,10 @@ import Map
 import MapLoader
 import Screen
 import Helper
+import Timer
 
 levels = Helper.levels
-
+WHITE = (255, 255, 255)
 
 class Level(Screen.Screen):
     def __init__(self):
@@ -15,12 +16,15 @@ class Level(Screen.Screen):
         self.box_list = pygame.sprite.Group()
         self.mLoader = MapLoader.MapLoader()
         Helper.actuallevel = 0
-
+        self.timer = Timer.Timer()
         self.load(levels[Helper.actuallevel])
+        self.playermoves = 0
 
     def load(self, mapname):
         self.map = Map.Map("1",self.mLoader.load(mapname))
         self.map.build(self)
+        self.timer.restart()
+        self.playermoves =0;
 
     def loadNext(self):
         Helper.actuallevel+=1
@@ -32,6 +36,13 @@ class Level(Screen.Screen):
         self.map.draw(screen)
         self.box_list.draw(screen)
         self.player.draw(screen)
+        self.timer.draw(screen,Helper.Font)
+        self.drawMoves(screen,Helper.Font)
+
+    def drawMoves(self,screen,font):
+        str = "Moves: %d" %self.playermoves
+        text = font.render(str, True, WHITE)
+        screen.blit(text, [400, 10])
 
     def addPlayer(self,_player):
         self.player.add(_player)
@@ -104,6 +115,7 @@ class Level(Screen.Screen):
             p.moveLeft()
         elif(dx==1 and dy==0):
             p.moveRight()
+        self.playermoves +=1
 
     def moveBox(self,x,y,dx,dy):
          for i in self.box_list.sprites():
@@ -148,4 +160,5 @@ class Level(Screen.Screen):
                 elif event.key == pygame.K_RIGHT:
                     self.playerMoveRight()
             print(event)
+        self.timer.update()
         return crashed

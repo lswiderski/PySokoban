@@ -2,7 +2,7 @@ __author__ = 'neufrin'
 import pygame
 
 
-pygame.font.init()
+
 menu_font = pygame.font.Font(None, 40)
 class Label:
 
