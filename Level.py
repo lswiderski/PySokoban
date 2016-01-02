@@ -5,6 +5,7 @@ import MapLoader
 import Screen
 import Helper
 import Timer
+import Clock
 
 levels = Helper.levels
 WHITE = (255, 255, 255)
@@ -19,6 +20,9 @@ class Level(Screen.Screen):
         self.timer = Timer.Timer()
         self.load(levels[Helper.actuallevel])
         self.playermoves = 0
+        self.clockWatch = pygame.sprite.Group()
+        self.clockWatch.empty()
+        self.clockWatch.add(Clock.Clock())
 
     def load(self, mapname):
         self.map = Map.Map("1",self.mLoader.load(mapname))
@@ -154,6 +158,7 @@ class Level(Screen.Screen):
                     self.playerMoveRight()
             print(event)
         self.timer.update()
+        self.clockWatch.sprites()[0].update()
         return crashed
 
     def draw(self,screen):
@@ -162,3 +167,4 @@ class Level(Screen.Screen):
         self.player.draw(screen)
         self.timer.draw(screen,Helper.Font)
         self.drawMoves(screen,Helper.Font)
+        self.clockWatch.draw(screen)
