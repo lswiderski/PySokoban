@@ -24,7 +24,7 @@ class Option:
         if self.hovered:
             return (255, 255, 255)
         else:
-            return (100, 100, 100)
+            return (50, 50, 50)
 
     def set_rect(self):
         self.set_rend()

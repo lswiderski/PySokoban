@@ -25,7 +25,6 @@ class Credits(Screen.Screen):
                 for option in self.options:
                     if option.hovered == True:
                         option.doAction()
-            print(event)
         return crashed
 
     def draw(self,screen):

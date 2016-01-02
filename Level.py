@@ -6,6 +6,7 @@ import Screen
 import Helper
 import Timer
 import Clock
+import Option
 
 levels = Helper.levels
 WHITE = (255, 255, 255)
@@ -23,6 +24,7 @@ class Level(Screen.Screen):
         self.clockWatch = pygame.sprite.Group()
         self.clockWatch.empty()
         self.clockWatch.add(Clock.Clock())
+        self.options = [Option.Option("Back to main menu", (520, 565),"mainmenu")]
 
     def load(self, mapname):
         self.map = Map.Map("1",self.mLoader.load(mapname))
@@ -144,6 +146,11 @@ class Level(Screen.Screen):
 
     def update(self,events):
         crashed = False
+        for option in self.options:
+            if option.rect.collidepoint(pygame.mouse.get_pos()):
+                option.hovered = True
+            else:
+                option.hovered = False
         for event in events:
             if event.type == pygame.QUIT:
                 crashed = True
@@ -156,6 +163,10 @@ class Level(Screen.Screen):
                     self.playerMoveLeft()
                 elif event.key == pygame.K_RIGHT:
                     self.playerMoveRight()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                for option in self.options:
+                    if option.hovered == True:
+                        option.doAction()
             print(event)
         self.timer.update()
         self.clockWatch.sprites()[0].update()
@@ -168,3 +179,5 @@ class Level(Screen.Screen):
         self.timer.draw(screen,Helper.Font)
         self.drawMoves(screen,Helper.Font)
         self.clockWatch.draw(screen)
+        for option in self.options:
+            option.draw(screen)
