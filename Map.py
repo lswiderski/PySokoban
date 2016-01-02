@@ -22,9 +22,14 @@ class Map:
         Helper.OFFSET_X = Helper.SCREEN_WIDTH/2 -((Helper.SPRT_WIDTH*Helper.SCALE*tmp)/2)
         Helper.OFFSET_Y = Helper.SCREEN_HEIGHT/2 -((Helper.SPRT_HEIGHT*Helper.SCALE*tmp)/2)
         for (i,row) in enumerate(self.mapstring):
+            lastType =" ";
             for (j,type) in enumerate(row):
                 print  i,j,type
-                self.bl_list.add(self.makeBlock(type,j,i))
+                if(type == lastType and lastType==" "):
+                    pass
+                else:
+                    self.bl_list.add(self.makeBlock(type,j,i))
+                    lastType = "#";
 
     def makeBlock(self,type,x,y):
         if(type == " " ):# "Floor"
