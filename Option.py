@@ -3,6 +3,7 @@ import pygame
 import Helper
 pygame.font.init()
 menu_font = pygame.font.Font(None, 40)
+click_sound = 'Content/click.wav'
 class Option:
 
     hovered = False
@@ -33,3 +34,5 @@ class Option:
 
     def doAction(self):
         Helper.actualscreen = self.action
+        s = pygame.mixer.Sound(click_sound)
+        s.play()
