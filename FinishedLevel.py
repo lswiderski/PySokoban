@@ -9,8 +9,8 @@ import Helper
 class FinishedLevel(Screen.Screen):
     def __init__(self):
         super(FinishedLevel, self,).__init__("finishedlevel")
-        self.options = [Option.Option("Back to Menu", (140, 105),"mainmenu"), Option.Option("Next level", (140, 145),"level")]
-        self.labels = [Label.Label("Label", (140, 345)), Label.Label(Helper.TIME_IN_LAST_LEVEL, (0, 50)), Label.Label("Moves: %d" %Helper.MOVES_IN_LAST_LEVEL, (0, 0)) ]
+        self.options = [Option.Option("Back to Menu", (100, 500),"mainmenu"), Option.Option("Next level", (550, 500),"level")]
+        self.labels = [Label.Label("Congratulations you finished level", (160, 205)), Label.Label(Helper.TIME_IN_LAST_LEVEL, (330, 300)), Label.Label("Moves: %d" %Helper.MOVES_IN_LAST_LEVEL, (345, 350)) ]
 
 
     def update(self,events):

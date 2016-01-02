@@ -9,12 +9,12 @@ import Screens
 class SelectLevel(Screen.Screen):
     def __init__(self):
         super(SelectLevel, self,).__init__("selectlevel")
-        self.options = [Option.Option("Back", (140, 105),"mainmenu"),]
-        self.labels = [Label.Label("Label", (140, 345))]
+        self.options = [Option.Option("Back", (100, 500),"mainmenu"),]
+        self.labels = [Label.Label("Select level", (320, 70))]
         self.levels = []
-        row =105
+        row =135
         for level in Helper.levels:
-            self.levels.append(Option.Option(level, (400, row),Helper.levels.index(level)))
+            self.levels.append(Option.Option(level, (350, row),Helper.levels.index(level)))
             row+=40
 
 
@@ -40,7 +40,6 @@ class SelectLevel(Screen.Screen):
                 for level in self.levels:
                     if level.hovered == True:
                         self.launchlevel(level.action)
-            print(event)
         return crashed
 
     def draw(self,screen):

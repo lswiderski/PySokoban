@@ -41,7 +41,7 @@ class Level(Screen.Screen):
     def drawMoves(self,screen,font):
         str = "Moves: %d" %self.playermoves
         text = font.render(str, True, WHITE)
-        screen.blit(text, [400, 10])
+        screen.blit(text, [10, 10])
 
     def addPlayer(self,_player):
         self.player.add(_player)

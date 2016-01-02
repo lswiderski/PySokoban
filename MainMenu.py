@@ -6,8 +6,8 @@ import Option
 class MainMenu(Screen.Screen):
     def __init__(self):
         super(MainMenu, self,).__init__("mainmenu")
-        self.options = [Option.Option("PLAY", (140, 105),"selectlevel"),
-           Option.Option("CREDITS", (145, 205),"credits")]
+        self.options = [Option.Option("PLAY", (100, 400),"selectlevel"),
+           Option.Option("CREDITS", (100, 450),"credits")]
 
 
     def update(self,events):
@@ -24,7 +24,6 @@ class MainMenu(Screen.Screen):
                 for option in self.options:
                     if option.hovered == True:
                         option.doAction()
-            print(event)
         return crashed
 
     def draw(self,screen):

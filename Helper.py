@@ -6,7 +6,7 @@ Font = pygame.font.Font(None, 40)
 
 actualscreen = "mainmenu"
 actuallevel = 0
-levels = ["level1", "level2"]
+levels = ["level1", "level2", "level3", "level4", "level5", "level6", "level7", "level8", "level9", "level10"]
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 OFFSET_X = 0

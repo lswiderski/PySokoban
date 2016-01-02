@@ -7,8 +7,8 @@ import Label
 class Credits(Screen.Screen):
     def __init__(self):
         super(Credits, self,).__init__("credits")
-        self.options = [Option.Option("Back", (140, 105),"mainmenu")]
-        self.labels = [Label.Label("Made by Lukasz Swiderski", (140, 145))]
+        self.options = [Option.Option("Back", (100, 500),"mainmenu")]
+        self.labels = [Label.Label("Made by Lukasz Swiderski", (220, 215))]
 
 
     def update(self,events):
