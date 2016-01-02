@@ -4,12 +4,11 @@ import pygame
 import Helper
 import Screens
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+
 WHITE = (128,128,128)
 
 pygame.init()
-gameDisplay = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
+gameDisplay = pygame.display.set_mode((Helper.SCREEN_WIDTH,Helper.SCREEN_HEIGHT))
 pygame.display.set_caption('PySokoban')
 clock = pygame.time.Clock()
 

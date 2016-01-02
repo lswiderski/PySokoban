@@ -1,11 +1,11 @@
 __author__ = 'neufrin'
 import pygame
+import Helper
 
+SPRT_WIDTH = Helper.SPRT_WIDTH
+SPRT_HEIGHT = Helper.SPRT_HEIGHT
 
-SPRT_WIDTH = 64
-SPRT_HEIGHT = 64
-SCALE = 0.5
-sheet = pygame.image.load('sb_texture.png')
+sheet = pygame.image.load('Content/sb_texture.png')
 
 
 class Block(pygame.sprite.Sprite):
@@ -14,8 +14,8 @@ class Block(pygame.sprite.Sprite):
         self.image = pygame.Surface([SPRT_WIDTH, SPRT_HEIGHT])
         self.setSprite(type)
         self.rect = self.image.get_rect()
-        self.rect.x = x*SPRT_WIDTH*SCALE
-        self.rect.y = y*SPRT_HEIGHT*SCALE
+        self.rect.x = x*SPRT_WIDTH*Helper.SCALE + Helper.OFFSET_X
+        self.rect.y = y*SPRT_HEIGHT*Helper.SCALE + Helper.OFFSET_Y
         self.type = type
         self.x = x
         self.y = y
@@ -35,14 +35,14 @@ class Block(pygame.sprite.Sprite):
             sheet.set_clip(pygame.Rect(0*SPRT_WIDTH,0, SPRT_WIDTH,SPRT_HEIGHT))
 
         self.image =  sheet.subsurface(sheet.get_clip())
-        self.image = pygame.transform.scale(self.image, (int(SPRT_WIDTH*SCALE), int(SPRT_HEIGHT*SCALE)))
+        self.image = pygame.transform.scale(self.image, (int(SPRT_WIDTH*Helper.SCALE), int(SPRT_HEIGHT*Helper.SCALE)))
         return self.image
 
     def changePositin(self,x,y):
         self.x=x
         self.y=y
-        self.rect.x = x*SPRT_WIDTH*SCALE
-        self.rect.y = y*SPRT_HEIGHT*SCALE
+        self.rect.x = x*SPRT_WIDTH*Helper.SCALE + Helper.OFFSET_X
+        self.rect.y = y*SPRT_HEIGHT*Helper.SCALE + Helper.OFFSET_Y
 
     def moveUp(self):
         self.changePositin(self.x,self.y-1)

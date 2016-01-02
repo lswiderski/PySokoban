@@ -32,13 +32,6 @@ class Level(Screen.Screen):
             return
         self.load(levels[Helper.actuallevel])
 
-    def draw(self,screen):
-        self.map.draw(screen)
-        self.box_list.draw(screen)
-        self.player.draw(screen)
-        self.timer.draw(screen,Helper.Font)
-        self.drawMoves(screen,Helper.Font)
-
     def drawMoves(self,screen,font):
         str = "Moves: %d" %self.playermoves
         text = font.render(str, True, WHITE)
@@ -162,3 +155,10 @@ class Level(Screen.Screen):
             print(event)
         self.timer.update()
         return crashed
+
+    def draw(self,screen):
+        self.map.draw(screen)
+        self.box_list.draw(screen)
+        self.player.draw(screen)
+        self.timer.draw(screen,Helper.Font)
+        self.drawMoves(screen,Helper.Font)

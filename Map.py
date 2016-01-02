@@ -3,7 +3,7 @@ import pygame
 import Block
 import Box
 import Player
-import MapLoader
+import Helper
 
 class Map:
     def  __init__(self, name, mapstring):
@@ -16,6 +16,11 @@ class Map:
         self.bl_list.empty()
         self.level.player.empty()
         self.level.box_list.empty()
+        tmp = len(self.mapstring)
+        if tmp>8:
+            Helper.SCALE = 0.5
+        Helper.OFFSET_X = Helper.SCREEN_WIDTH/2 -((Helper.SPRT_WIDTH*Helper.SCALE*tmp)/2)
+        Helper.OFFSET_Y = Helper.SCREEN_HEIGHT/2 -((Helper.SPRT_HEIGHT*Helper.SCALE*tmp)/2)
         for (i,row) in enumerate(self.mapstring):
             for (j,type) in enumerate(row):
                 print  i,j,type
