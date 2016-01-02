@@ -23,3 +23,6 @@ class Label:
         self.rect = self.rend.get_rect()
         self.rect.topleft = self.pos
 
+    def set_text(self,text):
+        self.text = text
+        self.set_rect()

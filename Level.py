@@ -142,6 +142,8 @@ class Level(Screen.Screen):
 
     def levelCompleted(self):
         Helper.actualscreen = "finishedlevel"
+        Helper.MOVES_IN_LAST_LEVEL = self.playermoves
+        Helper.TIME_IN_LAST_LEVEL = self.timer.time
         self.loadNext()
 
     def update(self,events):
@@ -167,7 +169,6 @@ class Level(Screen.Screen):
                 for option in self.options:
                     if option.hovered == True:
                         option.doAction()
-            print(event)
         self.timer.update()
         self.clockWatch.sprites()[0].update()
         return crashed
