@@ -26,7 +26,6 @@ class Map:
         for (i,row) in enumerate(self.mapstring):
             lastType =" ";
             for (j,type) in enumerate(row):
-                print  i,j,type
                 if(type == lastType and lastType==" "):
                     pass
                 else:
